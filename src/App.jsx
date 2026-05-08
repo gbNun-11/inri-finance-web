@@ -1,12 +1,8 @@
 const App = () => {
   return (
-    <>
-      <h1>App</h1>
-      <h1>App</h1>
-      <h1>App</h1>
-      <h1>App</h1>
-      <h1>App</h1>
-    </>
+    <main className="flex min-h-screen items-center justify-center bg-zinc-950 text-red-900">
+      <h1 className="text-4xl font-bold">Finance Web</h1>
+    </main>
   )
 }
 
