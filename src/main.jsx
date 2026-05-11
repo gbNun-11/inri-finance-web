@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import HomePage from './pages/homePage'
 import LoginPage from './pages/loginPage'
 import NotFound from './pages/notFoundPage'
-import SignUp from './pages/signUopPage'
+import SignUp from './pages/signUpPage'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
