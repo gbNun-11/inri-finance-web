@@ -10,6 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
+import { FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 
 const SignUp = () => {
@@ -26,6 +28,19 @@ const SignUp = () => {
           <Input placeholder="Digite seu E-mail" />
           <PasswordInput placeholder="Digite sua senha" />
           <PasswordInput placeholder="Digite sua senha novamente" />
+          <FieldGroup className="mx-auto w-full">
+            <div className="flex items-center gap-2">
+              <Checkbox id="terms" name="terms-checkbox-desc" defaultChecked />
+
+              <FieldLabel
+                htmlFor="terms"
+                className="text-muted-foreground text-xs opacity-75"
+              >
+                Ao clicar em "Criar conta", você aceita nosso termo de uso e
+                política de privacidade
+              </FieldLabel>
+            </div>
+          </FieldGroup>
         </CardContent>
         <CardFooter>
           <Button className="w-full">Criar conta</Button>
