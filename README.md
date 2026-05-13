@@ -10,7 +10,7 @@ O projeto ainda está em desenvolvimento, mas a API principal já foi construíd
 
 ## 👨‍💻 Quem está desenvolvendo?
 
-Sou Gabriel, tenho 23 anos e atuo como desenvolvedor.
+Sou Gabriel, tenho 23 anos, iniciei na programação a 5 anos e atuo como desenvolvedor.
 
 Tenho experiência com Python, SQL Server, ADVPL, HTML, CSS, JavaScript, TypeScript, React e React Native — e continuo sempre buscando aprender novas tecnologias e evoluir cada vez mais na área.
 
