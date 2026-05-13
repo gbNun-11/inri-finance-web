@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-const signUpSchema = z
+export const signUpSchema = z
   .object({
     firstName: z.string().trim().min(1, {
       error: 'O nome é obrigatório',
@@ -28,10 +28,11 @@ const signUpSchema = z
       .min(6, {
         error: 'A confirmação de senha deve conter no mínimo 6 caracteres',
       }),
+    terms: z.literal(true, {
+      error: 'Você deve aceitar os termos e condições',
+    }),
   })
   .refine((data) => data.password === data.passwordConfirm, {
     error: 'As senhas não coincidem',
     path: ['passwordConfirm'],
   })
-
-export default signUpSchema
