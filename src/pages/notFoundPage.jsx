@@ -9,7 +9,7 @@ const NotFound = () => {
     <main className="mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center gap-4 p-6 text-center leading-relaxed">
       <div className="space-y-2">
         <h2 className="scroll-m-20 border-b pb-1 text-2xl font-semibold tracking-tight first:mt-0">
-          Página não encontrada
+          404 - Página Não Encontrada
         </h2>
       </div>
 
