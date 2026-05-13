@@ -1,6 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
 import { Controller, useForm } from 'react-hook-form'
 import { Link } from 'react-router'
+import { toast } from 'sonner'
 
 import PasswordInput from '@/components/passwordInput'
 import { Button } from '@/components/ui/button'
@@ -20,9 +22,22 @@ import {
   FieldLabel,
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
+import { api } from '@/lib/axios'
 import { signUpSchema } from '@/schemas/signUpSchema'
 
 const SignUp = () => {
+  const signupMutation = useMutation({
+    mutationKey: ['signup'],
+    mutationFn: async (variables) => {
+      await api.post('/users/', {
+        first_name: variables.firstName,
+        last_name: variables.lastName,
+        email: variables.email,
+        password: variables.password,
+      })
+    },
+  })
+
   const methods = useForm({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -35,7 +50,16 @@ const SignUp = () => {
     },
   })
   const handleSubmit = (data) => {
-    console.log(data)
+    signupMutation.mutate(data, {
+      onSuccess: () => {
+        toast.success('Conta criada com sucesso!')
+      },
+      onError: () => {
+        toast.error(
+          'Erro ao criar conta. Por favor, tente novamente mais tarde!',
+        )
+      },
+    })
   }
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center gap-3">
