@@ -12,7 +12,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Field, FieldError, FieldGroup } from '@/components/ui/field'
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { loginSchema } from '@/schemas/loginSchema'
 
@@ -42,6 +47,7 @@ const LoginPage = () => {
                 control={methods.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>E-mail</FieldLabel>
                     <Input
                       {...field}
                       id={field.name}
@@ -61,6 +67,7 @@ const LoginPage = () => {
                 control={methods.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>Senha</FieldLabel>
                     <PasswordInput
                       {...field}
                       id={field.name}

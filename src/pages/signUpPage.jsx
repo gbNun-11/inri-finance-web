@@ -52,6 +52,7 @@ const SignUp = () => {
                 control={methods.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>Nome</FieldLabel>
                     <Input
                       {...field}
                       id={field.name}
@@ -71,6 +72,7 @@ const SignUp = () => {
                 control={methods.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>Sobrenome</FieldLabel>
                     <Input
                       {...field}
                       id={field.name}
@@ -90,6 +92,7 @@ const SignUp = () => {
                 control={methods.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>E-mail</FieldLabel>
                     <Input
                       {...field}
                       id={field.name}
@@ -109,6 +112,7 @@ const SignUp = () => {
                 control={methods.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>Senha</FieldLabel>
                     <PasswordInput
                       {...field}
                       id={field.name}
@@ -128,6 +132,9 @@ const SignUp = () => {
                 control={methods.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>
+                      Confirmar Senha
+                    </FieldLabel>
                     <PasswordInput
                       {...field}
                       id={field.name}
