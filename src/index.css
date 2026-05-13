@@ -168,7 +168,7 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(94.007% 0.00011 271.152);
   --foreground: oklch(0.145 0 0);
   --primary-blue: hsl(217, 100%, 23%);
   --primary-green: hsl(102, 90%, 20%);

@@ -136,7 +136,7 @@ const SignUp = () => {
                     />
 
                     {fieldState.invalid && (
-                      <FieldError errors={fieldState.error} />
+                      <FieldError errors={[fieldState.error]} />
                     )}
                   </Field>
                 )}

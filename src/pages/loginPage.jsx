@@ -50,7 +50,7 @@ const LoginPage = () => {
                     />
 
                     {fieldState.invalid && (
-                      <FieldError errors={fieldState.error} />
+                      <FieldError errors={[fieldState.error]} />
                     )}
                   </Field>
                 )}
@@ -68,7 +68,7 @@ const LoginPage = () => {
                       aria-invalid={fieldState.invalid}
                     />
                     {fieldState.invalid && (
-                      <FieldError errors={fieldState.error} />
+                      <FieldError errors={[fieldState.error]} />
                     )}
                   </Field>
                 )}
