@@ -1,7 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
+import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Link } from 'react-router'
+import { Link, Navigate } from 'react-router'
 import { toast } from 'sonner'
 
 import PasswordInput from '@/components/passwordInput'
@@ -26,15 +27,17 @@ import { api } from '@/lib/axios'
 import { signUpSchema } from '@/schemas/signUpSchema'
 
 const SignUp = () => {
+  const [user, setUser] = useState(null)
   const signupMutation = useMutation({
     mutationKey: ['signup'],
     mutationFn: async (variables) => {
-      await api.post('/users/', {
+      const res = await api.post('/users/', {
         first_name: variables.firstName,
         last_name: variables.lastName,
         email: variables.email,
         password: variables.password,
       })
+      return res.data
     },
   })
 
@@ -51,7 +54,12 @@ const SignUp = () => {
   })
   const handleSubmit = (data) => {
     signupMutation.mutate(data, {
-      onSuccess: () => {
+      onSuccess: (createdUser) => {
+        const accessToken = createdUser.tokens.accessToken
+        const refreshToken = createdUser.tokens.refreshToken
+        setUser(createdUser)
+        localStorage.setItem('accessToken', accessToken)
+        localStorage.setItem('refreshToken', refreshToken)
         toast.success('Conta criada com sucesso!')
       },
       onError: () => {
@@ -60,6 +68,9 @@ const SignUp = () => {
         )
       },
     })
+  }
+  if (user) {
+    return <Navigate to="/" replace />
   }
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center gap-3">
