@@ -16,10 +16,12 @@ const LOCAL_STORAGE_REFRESH_TOKEN_KEY = 'refreshToken'
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null)
+  const [isInitializing, setIsInitializing] = useState(true)
 
   useEffect(() => {
     const init = async () => {
       try {
+        setIsInitializing(true)
         const accessToken = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY)
         const refreshToken = localStorage.getItem(
           LOCAL_STORAGE_REFRESH_TOKEN_KEY,
@@ -35,10 +37,13 @@ export const AuthContextProvider = ({ children }) => {
 
         setUser(res.data)
       } catch (e) {
+        setUser(null)
         localStorage.removeItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY)
         localStorage.removeItem(LOCAL_STORAGE_REFRESH_TOKEN_KEY)
         setUser(null)
         console.error(e)
+      } finally {
+        setIsInitializing(false)
       }
     }
 
@@ -96,7 +101,7 @@ export const AuthContextProvider = ({ children }) => {
     })
   }
   return (
-    <AuthContext.Provider value={{ user, login, signup }}>
+    <AuthContext.Provider value={{ user, isInitializing, login, signup }}>
       {children}
     </AuthContext.Provider>
   )

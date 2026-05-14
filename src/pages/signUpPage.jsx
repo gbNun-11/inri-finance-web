@@ -24,7 +24,7 @@ import { useAuthContext } from '@/hooks/useAuthContext'
 import { signUpSchema } from '@/schemas/signUpSchema'
 
 const SignUp = () => {
-  const { user, signup } = useAuthContext()
+  const { user, signup, isInitializing } = useAuthContext()
 
   const methods = useForm({
     resolver: zodResolver(signUpSchema),
@@ -41,6 +41,7 @@ const SignUp = () => {
   if (user) {
     return <Navigate to="/" replace />
   }
+  if (isInitializing) return null
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center gap-3">
       <form onSubmit={methods.handleSubmit(handleSubmit)}>
