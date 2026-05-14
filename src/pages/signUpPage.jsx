@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Link, Navigate } from 'react-router'
 import { toast } from 'sonner'
@@ -28,6 +28,26 @@ import { signUpSchema } from '@/schemas/signUpSchema'
 
 const SignUp = () => {
   const [user, setUser] = useState(null)
+  useEffect(() => {
+    const init = async () => {
+      try {
+        const accessToken = localStorage.getItem('accessToken')
+        const refreshToken = localStorage.getItem('refreshToken')
+        if (!accessToken && !refreshToken) return
+        const res = await api.get('/users/me', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        setUser(res.data)
+      } catch (e) {
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+        console.error(e)
+      }
+    }
+    init()
+  })
   const signupMutation = useMutation({
     mutationKey: ['signup'],
     mutationFn: async (variables) => {
