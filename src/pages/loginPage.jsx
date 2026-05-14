@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useContext } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Link, Navigate } from 'react-router'
 
@@ -20,11 +19,11 @@ import {
   FieldLabel,
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { AuthContext } from '@/contexts/auth-context'
+import { useAuthContext } from '@/hooks/useAuthContext'
 import { loginSchema } from '@/schemas/loginSchema'
 
 const LoginPage = () => {
-  const { user, login } = useContext(AuthContext)
+  const { user, login } = useAuthContext()
   const methods = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
